@@ -622,15 +622,15 @@ public abstract class ForeignReferenceMapping extends DatabaseMapping {
                         remainingParentRows = new ArrayList(parentRows.subList(index, rowsSize));
                     } else if (startIndex == offset) {
                         // Head and tail.
-                        remainingParentRows = new ArrayList(parentRows.subList(0, startIndex - 1));
-                        remainingParentRows.addAll(parentRows.subList(index, rowsSize));
+                        remainingParentRows = new ArrayList(parentRows.subList(0, startIndex));
+                        remainingParentRows.addAll(parentRows.subList(offset + index, rowsSize));
                     } else {
                         // Middle
                         // Check if empty,
-                        if ((offset + index) >= (startIndex - 1)) {
+                        if ((offset + index) >= startIndex) {
                             remainingParentRows = new ArrayList(0);
                         } else {
-                            remainingParentRows = new ArrayList(parentRows.subList(offset + index, startIndex - 1));
+                            remainingParentRows = new ArrayList(parentRows.subList(offset + index, startIndex));
                         }
                     }
                     originalPolicy.setDataResults(this, remainingParentRows);
